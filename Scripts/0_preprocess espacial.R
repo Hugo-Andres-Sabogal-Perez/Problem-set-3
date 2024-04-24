@@ -1,7 +1,7 @@
 #Script manipulacion de datos de porblem set 3
 
 #FIjamos directorio
-setwd("C:/Users/hugos/OneDrive - Universidad de los andes/contenido semestres/9 semestre/Big data y machine learning/talleres/taller 3/github")
+setwd(substr(getwd(), 1, nchar(getwd()) - 8))
 
 #limpiar entorno
 rm(list = ls())
