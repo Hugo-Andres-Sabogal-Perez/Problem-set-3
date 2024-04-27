@@ -28,38 +28,32 @@ texto = train %>% select(c('property_id', 'title', 'description'))
 
 # Extraccion de numero de pisos:
 # A: Estructura mas restrictiva:
-pisos = '(\\d+)\\s+(pisos|plantas|niveles)\\b'
+pisos = '(\\w+|\\d+)\\s+(pisos|plantas|niveles)\\b'
 
 PISOS <- regmatches(texto$description, regexec(pisos, texto$description))
 texto$pisos <- sapply(PISOS, function(x) ifelse(length(x) > 1, x[2], NA))
 
 # B: Estructura menos restrictiva:
-pisos = '(\\d+)\\s*(pisos|plantas|niveles)\\b'
+pisos = '(\\w+|\\d+)\\s*(pisos|plantas|niveles)\\b'
 
 PISOS <- regmatches(texto$description, regexec(pisos, texto$description))
 texto$pisosb <- sapply(PISOS, function(x) ifelse(length(x) > 1, x[2], NA))
 
-# B: Estructura aun menos restrictiva:
-pisos = '(\\d+)\\s*(?:pisos|plantas|niveles)?\\b'
-
-PISOS <- regmatches(texto$description, regexec(pisos, texto$description))
-texto$pisosc <- sapply(PISOS, function(x) ifelse(length(x) > 1, x[2], NA))
-
 # Extraccion de area: 
-area = "\\b(\\d+)\\s+(m2|mt2|mts2|metros cuadrados|metros)\\b"
+area = "(\\w+|\\d+)\\s+(m2|mt2|mts2|metros cuadrados|metros)\\b"
 
 AREA = regmatches(texto$description, regexec(area, texto$description))
 texto$area <- sapply(AREA, function(x) ifelse(length(x) > 1, x[2], NA))
 
 # Parqueaderos:
-parqueaderos = '(\\d+)\\s+(parqueaderos)\\b'
+parqueaderos = '(\\w+|\\d+)\\s+(parqueaderos)\\b'
 
 PAR = regmatches(texto$description, regexec(parqueaderos, texto$description))
 texto$n_parqueaderos = sapply(PAR, function(x) ifelse(length(x) > 1, x[2], NA))
 
 # Cuartos:
 cuartos = 
-  '(\\d+)\\s+(cuartos|alcobas|piezas|habitaciones|cuarto|alcoba|pieza|habitacion)\\b'
+  '(\\w+|\\d+)\\s+(cuartos|alcobas|piezas|habitaciones|cuarto|alcoba|pieza|habitacion)\\b'
 
 CUAR = regmatches(texto$description, regexec(cuartos, texto$description))
 texto$n_cuartos = sapply(CUAR, function(x) ifelse(length(x) > 1, x[2], NA))
@@ -86,14 +80,13 @@ vacias = c('el', 'la', 'los', 'las', 'de', 'y', 'a', 'para', 'como', 'muy',
 
 unicas = unicas[!(unicas %in% vacias)]
 
-nombres = c('william', 'williams', 'wilches')
-
 unicas = sort(unicas)
 
-# DEfinicion de amenities:
-# Ascensor:
-
-ascensor = c('aascensor', 'accesor', 'acsensor', 'acsensores', 'ancensor')
+# Definicion de amenities:
+ascensor = c('aascensor', 'accesor', 'acsensor', 'acsensores', 'ancensor', 'ascendor',
+             'ascendores', 'ascensor', 'ascensorcocina', 'ascensores', 'ascensorplanta',
+             'ascesor', 'ascesores', 'asensor', 'asensores', 'asensoresbano', 'aseosres',
+             '')
 
 agente = c('agente', 'agenteinmobiliario', 'agentes', 'agentye')
 
@@ -110,8 +103,25 @@ antirruido = c('antirruido', 'antirruidos', 'antiruido', 'antiruidos', 'antruido
 antisismo = c('antisisimica', 'antisismica', 'antisismico', 'antissmica')
 apartaestudio = c('aparaestudio', 'aparataestudio', 'aparatestudio', 'aparatestudios',
                   'aparestudio', 'aparstudio', 'apartaestudi', 'apartaestudio', 
-                  'apartaestudios', 'apartaesudio', 'apartaetudios')
+                  'apartaestudios', 'apartaesudio', 'apartaetudios', 'apartestudio', 
+                  'apartoestudio', 'aptaestudio', 'aptartaestudio', 'aptaestudio', 
+                  'aptoestudio')
+arboles = c('arbol', 'arboleda', 'arboledajunto', 'arboles', 'arbolizada', 'arbolizadas',
+            'arborizacia', 'arborizacin', 'arborizacion', 'arborizada', 'arborizadas',
+            'arborizado', 'arborizados', 'arobicos')
 hotel = c('apartahotel', )
+
+duplex = c('apartamentoduplex', )
+
+balcon = c('balacon', 'balc', 'balca', 'balccon', 'balcn', 'balcncomedor', 
+           'balcncuarto', 'balcon', 'balconbano', 'balconcito', 'balcone',
+           'balconen', 'balcones', 'balconestudio', 'balconnes', 'balcoon')
+
+bbq = c('bbbq', 'bba', 'bbo', 'bbq', 'bbqbano', 'bbqentorno', 'bbqgimnasio', 
+        'bbqinformes', 'bbqjacuzzisaunasalon', 'bbqq', 'bbqs', 'bbqsalon', 
+        'bbqy', 'bbqzona', 'asadero', 'asado', 'asador', 'asadora', 'asadores',
+        'asados', 'asar', 'barbacoaparque', 'barbacoas', 'barbeque', 'barbicue',
+        'barbikiu', 'barbiquiu', 'barbq', 'barbqadministracion', )
 
 
 
