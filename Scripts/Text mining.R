@@ -121,7 +121,7 @@ bbq = c('bbbq', 'bba', 'bbo', 'bbq', 'bbqbano', 'bbqentorno', 'bbqgimnasio',
         'bbqinformes', 'bbqjacuzzisaunasalon', 'bbqq', 'bbqs', 'bbqsalon', 
         'bbqy', 'bbqzona', 'asadero', 'asado', 'asador', 'asadora', 'asadores',
         'asados', 'asar', 'barbacoaparque', 'barbacoas', 'barbeque', 'barbicue',
-        'barbikiu', 'barbiquiu', 'barbq', 'barbqadministracion', )
+        'barbikiu', 'barbiquiu', 'barbq', 'barbqadministracion')
 
 
 
