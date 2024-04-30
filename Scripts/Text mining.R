@@ -93,7 +93,14 @@ agente = c('agente', 'agenteinmobiliario', 'agentes', 'agentye')
 alfombra = c('alfombra', 'alfombrada', 'alfombradas', 'alfombrado', 'alfombrados', 
              'alfombras', 'alfombre')
 deposito = c('almacemaniento', 'almacenaje', 'almacenamiemto', 'almacenamiento', 
-             'almacenamientos', 'almacenar', 'almacenas', 'almacenimiento')
+             'almacenamientos', 'almacenar', 'almacenas', 'almacenimiento', "bodegaje",
+             "depoito", "deposio", "depositio", "deposito", "depositoa", "depositoapartamento",
+             "depositobalconel", "depositoconjunto", "depositoconsta", "depositocortinasconjunto",
+             "depositoedificio", "depositoel", "depositoestrato", "depositoexcelente",
+             "depositola", "depositomuy", "depositoparqueaderos", "depositopiso",
+             "depositos", "depositose", "depositotodo", "depostio", "depostios", "deposto",
+             "depsito", "depsitos", "depsitoscalentador", "depsitostano", "depsoito",
+             "desposito", )
 amoblado = c('amobaldo', 'amoblad', 'amoblada', 'amobladas', 'amoblado', 'amoblados',
              'amoblamiento', 'amobledo', 'amueblamiento')
 antiguo = c('antigedad', 'antigua', 'antiguas', 'antiguedad', 'antiguedades', 
@@ -108,20 +115,41 @@ apartaestudio = c('aparaestudio', 'aparataestudio', 'aparatestudio', 'aparatestu
                   'aptoestudio')
 arboles = c('arbol', 'arboleda', 'arboledajunto', 'arboles', 'arbolizada', 'arbolizadas',
             'arborizacia', 'arborizacin', 'arborizacion', 'arborizada', 'arborizadas',
-            'arborizado', 'arborizados', 'arobicos')
+            'arborizado', 'arborizados', 'arobicos', "bosque", "bosques", )
 hotel = c('apartahotel', )
 
-duplex = c('apartamentoduplex', )
+duplex = c('apartamentoduplex', "deplex", )
 
 balcon = c('balacon', 'balc', 'balca', 'balccon', 'balcn', 'balcncomedor', 
            'balcncuarto', 'balcon', 'balconbano', 'balconcito', 'balcone',
-           'balconen', 'balcones', 'balconestudio', 'balconnes', 'balcoon')
+           'balconen', 'balcones', 'balconestudio', 'balconnes', 'balcoon', 
+           "blacon", "blacones", "conbalcon", "depositobalconel")
 
 bbq = c('bbbq', 'bba', 'bbo', 'bbq', 'bbqbano', 'bbqentorno', 'bbqgimnasio', 
         'bbqinformes', 'bbqjacuzzisaunasalon', 'bbqq', 'bbqs', 'bbqsalon', 
         'bbqy', 'bbqzona', 'asadero', 'asado', 'asador', 'asadora', 'asadores',
         'asados', 'asar', 'barbacoaparque', 'barbacoas', 'barbeque', 'barbicue',
         'barbikiu', 'barbiquiu', 'barbq', 'barbqadministracion')
-
-
+billar =c("billar", "billares", "billarpool")
+inteligente = c("biometrica", "biometrico", "biometricos", "biomtrica", "biomtrico")
+blindaje = c("blindada", "blindadas", "blindado", "blindados", "blindaje", 
+             "blindex")
+calefaccion = c("biochimenea","calefaccin", "calefaccion", "calefactor", 
+                "calenatdor", "calendor", "calentaador", "calentador", 
+                "calentadores", "calentardor", "chiimenea", "chimeea", 
+                "chimemea", "chimenea", "chimeneas", "chimenena", "chimenrea",
+                "cimenea", "climatizada", "climatizadas", "climatizado", 
+                "climenea", "depsitoscalentador")
+canchas = c("cancahas", "cancha", "canchaa", "canchas", "cnacha")
+seguridad = c("celador", "celadores", "celadur", "celadura", "celaduria",
+              "cercaco", "cercad", "cercada", "cercado", "cercas", "cerco",
+              "citfono", "citfonos", "citoffonos", "citofona", "citofoni", 
+              "citofonia", "citofono", "citofonos", "cmara", "cmaras")
+clubhouse = c("clubhause", "clubhpuse", "conjuntoclub")
+conjunto = c("condominio", "condominios", "condonimio", "conjnto", "conjun", 
+             "conjuno", "conjunta", "conjunto", "conjuntocerradoubicada", 
+             "conjuntoclub", "conjuntode", "conjuntos", "conjuto" ,
+             "conjuunto", "cunjunto", "depositoconjunto", "depositocortinasconjunto")
+gym = c("congimnasio", )
+cowork = c("cowork", "coworkin", "coworking", "coworkins")
 
