@@ -86,7 +86,7 @@ unicas = sort(unicas)
 ascensor = c('aascensor', 'accesor', 'acsensor', 'acsensores', 'ancensor', 'ascendor',
              'ascendores', 'ascensor', 'ascensorcocina', 'ascensores', 'ascensorplanta',
              'ascesor', 'ascesores', 'asensor', 'asensores', 'asensoresbano', 'aseosres',
-             '')
+             'escensor')
 
 agente = c('agente', 'agenteinmobiliario', 'agentes', 'agentye')
 
@@ -149,7 +149,7 @@ clubhouse = c("clubhause", "clubhpuse", "conjuntoclub")
 conjunto = c("condominio", "condominios", "condonimio", "conjnto", "conjun", 
              "conjuno", "conjunta", "conjunto", "conjuntocerradoubicada", 
              "conjuntoclub", "conjuntode", "conjuntos", "conjuto" ,
-             "conjuunto", "cunjunto", "depositoconjunto", "depositocortinasconjunto")
+             "conjuunto", "cunjunto", "depositoconjunto", "depositocortinasconjunto", "onjunto")
 gym = c("congimnasio", )
 cowork = c("cowork", "coworkin", "coworking", "coworkins")
 
