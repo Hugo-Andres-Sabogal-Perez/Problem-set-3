@@ -87,7 +87,8 @@ unicas = sort(unicas)
 ascensor = c('aascensor', 'accesor', 'acsensor', 'acsensores', 'ancensor', 'ascendor',
              'ascendores', 'ascensor', 'ascensorcocina', 'ascensores', 'ascensorplanta',
              'ascesor', 'ascesores', 'asensor', 'asensores', 'asensoresbano', 'aseosres',
-             'escensor')
+             'escensor', "eleva","elevacin","elevacion","elevado","elevadointeriorsala",
+             "elevador","elevadores")
 
 agente = c('agente', 'agenteinmobiliario', 'agentes', 'agentye')
 
@@ -114,9 +115,11 @@ apartaestudio = c('aparaestudio', 'aparataestudio', 'aparatestudio', 'aparatestu
                   'apartaestudios', 'apartaesudio', 'apartaetudios', 'apartestudio', 
                   'apartoestudio', 'aptaestudio', 'aptartaestudio', 'aptaestudio', 
                   'aptoestudio')
-hotel = c('apartahotel', )
+hotel = c('apartahotel')
 
-duplex = c('apartamentoduplex', "deplex", )
+duplex = c('apartamentoduplex', "deplex", "dplex","dublex", "dueplex","dulex",
+           "dulpex","duolex","dupex","dupkex","dupl","duples","duplexapartamento",
+           "duplexde","duplez")
 
 balcon = c('balacon', 'balc', 'balca', 'balccon', 'balcn', 'balcncomedor', 
            'balcncuarto', 'balcon', 'balconbano', 'balconcito', 'balcone',
@@ -138,12 +141,12 @@ calefaccion = c("biochimenea","calefaccin", "calefaccion", "calefactor",
                 "calentadores", "calentardor", "chiimenea", "chimeea", 
                 "chimemea", "chimenea", "chimeneas", "chimenena", "chimenrea",
                 "cimenea", "climatizada", "climatizadas", "climatizado", 
-                "climenea", "depsitoscalentador")
+                "climenea", "depsitoscalentador","electricacaldera")
 canchas = c("cancahas", "cancha", "canchaa", "canchas", "cnacha")
 seguridad = c("celador", "celadores", "celadur", "celadura", "celaduria",
               "cercaco", "cercad", "cercada", "cercado", "cercas", "cerco",
               "citfono", "citfonos", "citoffonos", "citofona", "citofoni", 
-              "citofonia", "citofono", "citofonos", "cmara", "cmaras")
+              "citofonia", "citofono", "citofonos", "cmara", "cmaras", "elctricovigilancia")
 clubhouse = c("clubhause", "clubhpuse", "conjuntoclub")
 conjunto = c("condominio", "condominios", "condonimio", "conjnto", "conjun", 
              "conjuno", "conjunta", "conjunto", "conjuntocerradoubicada", 
@@ -153,66 +156,21 @@ gym = c("congimnasio", )
 cowork = c("cowork", "coworkin", "coworking", "coworkins")
 
 ### Mapa
-distrito = c("distrital","distritales","distrito","diudad","dito","ditos")
-documento = c("documentaci", "documentacin", "documentacion", "documentada","documentalmente","documentis", "documentos","documetos",
-              "documnetos")
-dolar = c("dolar","dolares","dollarcity")
-domicilio =c("domiciliario", "domiciliarios", "domicilio", "domicilios")
-domingo = c("domingo","domingos","dominio","dominos")
-domo = c("domo","domos","domotica","domoticavisita","domotico","domotizacion","domotizada","domotizado", "domotizados","doomo")
-donalds=c("donald","donalds","donalls")
-dormitorio=c("dormir","dormitori","dormitorio","dormitorios")
 drywall = c("draywall","driwall","dywall")
-duplex = c("dplex","dublex", "dueplex","dulex","dulpex","duolex","dupex","dupkex","dupl","duples","duplexapartamento","duplexde","duplez",)
-drogueria =c("drogeria","drogerias","drogierias","drogruerias","droguer","droguera","drogueras","drogueria","droguerias","drouerias")
-ducha = c("ducha","duchas")
-ductos = c("ducteria","ducto","ductos")
-duque = c("duque","duquesa")
-dvd = c("dvd")
-apartamento = c("eapartamento", "partamento", "partameto")
-economia = c("econmica","econmicamente","econmicas","econmico","econmicos","economia","economica","economicas","economice","economico","economicos")
-ecopetrol = c("ecopetrol")
 edificio = c("edeficio","edf","edfgicio","edficio","edfificio","edi","edicficio","edicicio","edicio","edidifico","edif","edifcio","edificabilidad","edificables",
              "edificaci","edificacia","edificacin","edificacion","edificaciones","edificado","edificar","edifici","edificio","edificioedificio","edificion","edificioproyecto","edificios","edificioss","edifico","edificvio",
              "edifiicio","edifiico","edoficio","efidicio","efificio","eidificio","electricasedificio","eledificio")
 lavanderia = c("elavanderia","elavado")
-caseta = c("elctricocaseta")
-vigilancia = c("elctricovigilancia")
-caldera = c("electricacaldera")
-elefante = c("elefante","elefantes")
-elevador = c("eleva","elevacin","elevacion","elevado","elevadointeriorsala","elevador","elevadores")
-embajada = c("embajada","embajadas","embajador")
+
 embargos = c("embargos","embargada")
-emergencia = c("emergencia","emergencias")
 enfermeria = c("emfermeria","enfermera","enfermer","enfermeria")
-inmueble = c("encuentratuinmueble")
-madera = c("enmadera")
-cocina = c("entradacocina", "ocina")
-sala = c("entradasala")
-transporte = c("entrasporte")
-pisos = c("entrepiso","entrepisos")
-rios = c("entrerrios")
-equipamiento = c("equipaje","equipamento","equipamentos","equipamientos","equipo","equipos")
 escaleras = c("escala" ,"escaleras","escales", "escalones")
-escoba = c("escoba","escobas","escobero")
-escritorio = c("escritorio","escritorios")
-escuela = c("escuela","escuelas")
-espacios = c("esopacios","espa","espaacio","espacio","espacioas","espacion","espacioos","espacios","espaciosa","espaciosas","espacioso","espaciosos","espaios",
-             "espcio","espeacio","especio","especios")
-espejo = c("espejo","espejos")
 
 ### Gabi
-notaria = c("notara", "notaras", "notaria", "notarias", "notars")
 nuevo = c("nueva", "nuevas", "nuevecito", "nuevesito", "nuevo", "nuevos", "nuevoy")
 obra = c("oba", "obra", "obrador", "obras", "obrero")
-occidente = c("occ", "occidentales", "occidente", "occientede", "occiental", "ocidental", "ocidente")
-ocupado = c("ocupa", "ocupacion", "ocupada", "ocupado", "ocupan", "ocupando", "ocupantes", "ocupar", "ocuparlo")
-odontologia = c("odo", "ondontol", "odontolgicos", "odontologicas", "odontologico", "odontologicos", "ontologica")
 oficina = c("oficina", "oficias", "oficinas", "oficinascarrera", "oficionas", "oficna")
-olimpica = c("olimpica", "olimpia", "olmpica", "olympica")
-oriente = c("orie", "orienta", "orientales", "oriente")
 oscuro = c("oscura", "oscurece", "oscuro", "oscuridad")
-outlet = c("oulet", "outles")
 parqueadero = c("paequeadero", "paqueadero", "paquadero", "paqueaderos", "paquear", "paqueo", "paraqueaderos", "parfqueaderos", "parkeadero", "parq", "parqeadero", "parqeaderos", "parqeuadero", 
                 "parqeuaderos", "parqieaderos", "parqiueaderos", "parqqueadero", "parqueadero", "parquaderos", "parquaderos", "parquaedero", "parquea", "parquead", "parqueadaderos", "parqueadeeo", 
                 "parqueadeo", "parqueadeors", "parqueadeos", "parqueaderas", "parqueaderi", "parqueadero", "parqueaderoa", "parqueaderode", "parqueaderodentro", "parqueaderoel", "parqueaderony", "parqueaderopara", 
@@ -221,25 +179,13 @@ parqueadero = c("paequeadero", "paqueadero", "paquadero", "paqueaderos", "paquea
                 "parqueamos", "parquear", "parqueasero", "parqueaseros", "parquedadero", "parquedaderos", "parquedaero", "parquedaeros", "parquedaro", "parquedaros", "parquedeaderos", "parquedero", "parquederos", "parqueo", "parqueos",
                 "parqueqadero", "parqueqderos", "parquer", "parqueradero", "parquesderos", "parquessaderos", "parquiaderos", "dosgarajes", "dosparqueaderos")
 paisaje = c("paisaje", "paisajes", "pajisajismo", "paisajista", "paisajistico", "pasaje")
-panaderia = c("panader", "panadera", "panaderas", "panaderia", "panaderias")
 panoramico = c("panora", "panoramia", "panoramica", "panoramicas", "panoramico", "panoramicogymsala", "panoramicos", "panormaica", "panormica", "panormicas", "panormico", "panormicos")
-papeleria = c("papeler", "papelera", "papeleras", "papeleria", "papelerias")
-paradero = c("parada", "paradas", "paradero", "paraderos")
-parroquia = c("parroquia", "parroquial", "parroquias")
-pasillo = c("pasillo", "pasillos")
-pasteleria = c("pasteleras", "pasteleria")
 patio = c("patiio", "patiecito", "patiosegundo")
 pavimentado = c("pavimentada", "pavimentadas", "pavimentado", "pavimentados", "pavimento")
-peatonal = c("peatonal", "peatonales", "peatonalmente", "peatones")
-peliculas = c("pelculas", "pelicula", "peliculas")
-peluqueria = c("pelo", "peluquer", "peluquera", "peluqueras", "peluqueria", "peluquerias")
 penthouse = c("penhaouse", "penhause", "penhouse", "penhuose", "pentahouse", "penthause", "penthose", "penthouseen", "penthousse", "pethouse", "ph")
 pequeño = c("pequena", "pequenas", "pequeno", "pequenos", "pequeos", "peuqena", "piccola")
 perro = c("perrera", "perrito", "perros", "petfriendly")
-persiana = c("persianas", "persiana", "persionas")
-pescaderia = c("pescaderia", "pescadero", "pescador")
 piscina = c("picina", "pileta")
-piedra = c("piedra", "piedras", "pierda", "pierdas")
 pingpong = c("pingpong", "pinpog", "pinpon", "pinpong")
 pintado = c("pintada", "pintadas", "pintado")
 verde = c("paque", "paqrue", "paques", "parke", "parket", "parkets", "parkwey", "parqs", "parqu", "parque", "parquebarrios", "parquecito", "parquede", "parqueinfantil", "parques", "parquesbarrios", "parqus", "parqie", "paruqe", "paruqes", "parway", "pasamano", "pasamanos", "patinar", "patines", "patineta", "patinetas", "entreparques", 
