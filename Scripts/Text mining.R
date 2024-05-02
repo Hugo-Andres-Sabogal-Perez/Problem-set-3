@@ -33,12 +33,6 @@ pisos = '(\\w+|\\d+)\\s+(pisos|plantas|niveles)\\b'
 PISOS <- regmatches(texto$description, regexec(pisos, texto$description))
 texto$pisos <- sapply(PISOS, function(x) ifelse(length(x) > 1, x[2], NA))
 
-# B: Estructura menos restrictiva:
-pisos = '(\\w+|\\d+)\\s*(pisos|plantas|niveles)\\b'
-
-PISOS <- regmatches(texto$description, regexec(pisos, texto$description))
-texto$pisosb <- sapply(PISOS, function(x) ifelse(length(x) > 1, x[2], NA))
-
 # Extraccion de area: 
 area = "(\\w+|\\d+)\\s+(m2|mt2|mts2|metros cuadrados|metros)\\b"
 
@@ -57,6 +51,35 @@ cuartos =
 
 CUAR = regmatches(texto$description, regexec(cuartos, texto$description))
 texto$n_cuartos = sapply(CUAR, function(x) ifelse(length(x) > 1, x[2], NA))
+
+# Correccion de variables:
+numeros_escritos <- c( "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez")
+numeros_numericos <- as.character(2:10)
+
+texto <- texto %>%
+  mutate(pisos = str_replace_all(pisos, setNames(numeros_numericos,numeros_escritos)),
+         area = str_replace_all(area, setNames(numeros_numericos,numeros_escritos)),
+         n_parqueaderos = str_replace_all(n_parqueaderos, setNames(numeros_numericos,numeros_escritos)),
+         n_cuartos = str_replace_all(n_cuartos, setNames(numeros_numericos,numeros_escritos)))
+
+texto$pisos = as.numeric(texto$pisos)
+texto$pisos <- lapply(texto$pisos, 
+                      function(x) if_else(is.na(x), 1, x))
+texto$pisos <- lapply(texto$pisos, 
+                      function(x) if_else(x > 10, 1, x))
+
+texto$n_parqueaderos = as.numeric(texto$n_parqueaderos)
+texto$n_parqueaderos <- lapply(texto$n_parqueaderos, 
+                      function(x) if_else(is.na(x), 0, x))
+texto$n_parqueaderos <- lapply(texto$n_parqueaderos, 
+                      function(x) if_else(x > 10, 1, x))
+
+texto$n_cuartos = as.numeric(texto$n_cuartos)
+texto$n_cuartos <- lapply(texto$n_cuartos, 
+                               function(x) if_else(is.na(x), 1, x))
+texto$n_cuartos <- lapply(texto$n_cuartos, 
+                               function(x) if_else(x > 20, 1, x))
+
 
 # Correccion de errores ortograficos:
 texto$desc_corregido = lapply(texto$description, 
@@ -328,3 +351,24 @@ texto$pintado = lapply(texto$desc_corregido_lemma,
 
 texto$verde = lapply(texto$desc_corregido_lemma,
                        function(x) {ifelse(any(x %in% verde), 1, 0)})
+
+# Ultimas modificaciones:
+for(col in colnames(texto)[10:54]){
+  C = unlist(texto[[col]])
+  texto[[col]] = C
+}
+
+i = 1 
+while(i <= nrow(texto)){
+  if(texto$duplex[i] == 1){
+    texto$pisos[i] = 2
+    i = i + 1
+  }
+  else{
+    i = i + 1
+  }
+}
+
+# Exportar la base de datos:
+texto = texto %>% select(-c('title', 'description', 'desc_corregido', 'desc_corregido_lemma'))
+write.csv(x = texto, file = "text_mining.csv", row.names = FALSE)
