@@ -27,6 +27,7 @@ delitos<-st_read("Stores/inputs/dai/DAILoc.shp")
 restbar<-st_read("Stores/inputs/egba/EGBA.shp")
 cicloruta<-st_read("Stores/inputs/ciclorruta/ciclorruta.shp")
 manzanas_aval<-st_read("Stores/inputs/avaluo_manz/Avaluo_Manzana.shp")
+sector<-st_read("Stores/inputs/sector/SECTOR.shp")
 
 #Convertirmos los dataframe a tipo de datos espacial (sf)
 convert_dfsf<-function(datos){
@@ -264,16 +265,20 @@ test_sf<-distneastfeat(test_sf, cicloruta, 'distcicloruta_nearest', 'punto')
 ### Avaluo catastral manzana de la manzana
 manzanas_aval <- st_transform(manzanas_aval, st_crs(train_sf))
 
-#Asignación avaluo de manzasa
+#Asignación avaluo de manzana
 train_sf<-st_join(train_sf, manzanas_aval , join = st_nearest_feature)
 test_sf<-st_join(test_sf, manzanas_aval , join = st_nearest_feature)
 
-
+#configuración de cordeanas
+sector <- st_transform(sector, st_crs(train_sf))
+#asginacion de secor
+train_sf<-st_join(train_sf, sector , join = st_within)
+test_sf<-st_join(test_sf, sector , join = st_within)
 
 ##Para observar objetos nuevos
 leaflet() %>%
   addTiles() %>%
-  addCircles(data = cicloruta)  
+  addPolygons(data = sector)  
 
 
 
