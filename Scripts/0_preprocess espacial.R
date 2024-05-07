@@ -258,9 +258,33 @@ test_sf<-distneastfeat(test_sf, primary, 'distrprimary_nearest', 'punto')
 cicloruta <- st_transform(cicloruta, st_crs(train_sf))
 cicloruta <- st_cast(cicloruta, "POINT")
 
-train_sf<-distneastfeat(train_sf, cicloruta, 'distcicloruta_nearest','punto')
-test_sf<-distneastfeat(test_sf, cicloruta, 'distcicloruta_nearest', 'punto')
+#Funcion para distancia minima
+dist_minpoints<-function(data_orginial,ext_points){
+  
+  minimos<-c()
+  
+  for (i in 1:nrow(data_orginial)){
+    
+    vector_dist<-st_distance(data_orginial[i,],ext_points)
+    min<-min(vector_dist)
+    
+    minimos<-c(minimos,min)
+    print(minimos)
+    
+    rm(vector_dist)
+    
+  }
+  
+  return(minimos)
+}
 
+#Creamos  las variables (este codigo se demora mucho)
+trainciclodist<-dist_minpoints(train_sf,cicloruta)
+testciclodist<-dist_minpoints(test_sf,cicloruta)
+
+#Asignamos las variables al dataframe
+train_sf$distciclo_nearest<-trainciclodist
+test_sf$distciclo_nearest<-testciclodist
 
 ### Avaluo catastral manzana de la manzana
 manzanas_aval <- st_transform(manzanas_aval, st_crs(train_sf))
@@ -275,6 +299,12 @@ sector <- st_transform(sector, st_crs(train_sf))
 train_sf<-st_join(train_sf, sector , join = st_within)
 test_sf<-st_join(test_sf, sector , join = st_within)
 
+#Exportamos base de datos
+export(train_sf, 'Stores/outputs/train_geo.rds')
+export(test_sf, 'Stores/outputs/test_geo.rds')
+
+#Prueba exportacion
+pruebatrain<-import('Stores/outputs/train_geo.rds')
 ##Para observar objetos nuevos
 leaflet() %>%
   addTiles() %>%
