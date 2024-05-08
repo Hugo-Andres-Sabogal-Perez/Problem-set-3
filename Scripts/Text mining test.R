@@ -17,7 +17,7 @@ require(hunspell)
 require(textstem)
 
 # Importamos bases de datos
-train <- read.table(unz('train.csv.zip', 'train.csv'), header = T, sep = ",")
+train <- read.table('test.csv', header = T, sep = ",")
 
 # Tipos de variables:
 train$description = as.character(train$description)
@@ -370,4 +370,4 @@ while(i <= nrow(texto)){
 
 # Exportar la base de datos:
 texto = texto %>% select(-c('title', 'description', 'desc_corregido', 'desc_corregido_lemma'))
-write.csv(x = texto, file = "text_mining.csv", row.names = FALSE)
+write.csv(x = texto, file = "text_mining_test.csv", row.names = FALSE)
