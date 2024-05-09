@@ -303,6 +303,97 @@ test_sf<-st_join(test_sf, sector , join = st_within)
 export(train_sf, 'Stores/outputs/train_geo.rds')
 export(test_sf, 'Stores/outputs/test_geo.rds')
 
+#Limpaimos entorno
+rm(list = ls())
+
+#imprtamos datos
+train<-import('Stores/outputs/train_geo.rds')
+test<-import('Stores/outputs/test_geo.rds')
+
+#Borramos variables innecesarias train
+
+train<- train %>% dplyr::select(-OBJECTID.x,
+                         -CODIGO_MAN,
+                         -CODIGO_CRI, 
+                         -NORMATIVA,
+                         -ACTO_ADMIN,
+                         -NUMERO_ACT,
+                         -ESCALA_CAP,
+                         -FECHA_CAPT,
+                         -FECHA_ACTO,
+                         -SHAPE_AREA,
+                         -SHAPE_LEN,
+                         -SHAPE_Leng.x,
+                         -SHAPE_Area.x,
+                         -SHAPE_Leng.y,
+                         -SHAPE_LEN,
+                         -SHAPE_Area,
+                         -SCATIPO,
+                         -SCACODIGO,
+                         -GLOBALID,
+                         -OBSERVACIO, 
+                         -LocAAdmini, 
+                         -LocArea,
+                         -LocCodigo,
+                         -SHAPE_Leng,
+                         -SHAPE_Area.y,
+                         -CP_TERR_AR,
+                         -GRUPOP_TER,
+                         -RESPONSABL,
+                         -CODIGO_ZON,
+                         -MANZANA_ID,
+                         -OBJECTID.y)
+
+#Borramos variables innecesarias test
+
+test<- test %>% dplyr::select(-OBJECTID.x,
+                                -CODIGO_MAN,
+                                -CODIGO_CRI, 
+                                -NORMATIVA,
+                                -ACTO_ADMIN,
+                                -NUMERO_ACT,
+                                -ESCALA_CAP,
+                                -FECHA_CAPT,
+                                -FECHA_ACTO,
+                                -SHAPE_AREA,
+                                -SHAPE_LEN,
+                                -SHAPE_Leng.x,
+                                -SHAPE_Area.x,
+                                -SHAPE_Leng.y,
+                                -SHAPE_LEN,
+                                -SHAPE_Area,
+                                -SCATIPO,
+                                -SCACODIGO,
+                                -GLOBALID,
+                                -OBSERVACIO, 
+                                -LocAAdmini, 
+                                -LocArea,
+                                -LocCodigo,
+                                -SHAPE_Leng,
+                                -SHAPE_Area.y,
+                                -CP_TERR_AR,
+                                -GRUPOP_TER,
+                                -RESPONSABL,
+                                -CODIGO_ZON,
+                                -MANZANA_ID,
+                                -OBJECTID.y)
+
+## Cambiamos nombres de algunas variables
+
+train<- train  %>% rename('avaluo_comercialmanz'='AVALUO_COM', 
+                          'avaluo_catastromanz'='AVALUO_CAT',
+                          'nombre_sector'='SCANOMBRE',
+                          'n_delitossexuales'='n_delitossexales')
+
+test<- test  %>% rename('avaluo_comercialmanz'='AVALUO_COM', 
+                          'avaluo_catastromanz'='AVALUO_CAT',
+                          'nombre_sector'='SCANOMBRE',
+                          'n_delitossexuales'='n_delitossexales')
+
+#Exportamos ya base limpia
+export(train, 'Stores/outputs/train_geo.rds')
+export(test, 'Stores/outputs/test_geo.rds')
+
 #Prueba exportacion
 pruebatrain<-import('Stores/outputs/train_geo.rds')
 ##Para observar objetos nuevos
