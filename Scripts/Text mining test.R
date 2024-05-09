@@ -370,4 +370,4 @@ while(i <= nrow(texto)){
 
 # Exportar la base de datos:
 texto = texto %>% select(-c('title', 'description', 'desc_corregido', 'desc_corregido_lemma'))
-write.csv(x = texto, file = "text_mining_test.csv", row.names = FALSE)
+write.csv(x = texto, file = "Stores/outputs/text_mining_test.csv", row.names = FALSE)

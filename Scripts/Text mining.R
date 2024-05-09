@@ -1,7 +1,6 @@
 rm(list = ls())
 # Set directory:
-setwd('/Users/juansilva/Desktop/Universidad/Semestre 8/Big Data/Set3')
-
+setwd(substr(getwd(), 1, nchar(getwd()) - 8))
 # Llamamos las librerías necesarias para la realización del trabajo
 require(pacman)
 require(tidyverse)
@@ -370,4 +369,4 @@ while(i <= nrow(texto)){
 
 # Exportar la base de datos:
 texto = texto %>% select(-c('title', 'description', 'desc_corregido', 'desc_corregido_lemma'))
-write.csv(x = texto, file = "text_mining.csv", row.names = FALSE)
+write.csv(x = texto, file = "Stores/outputs/text_mining_train.csv", row.names = FALSE)
