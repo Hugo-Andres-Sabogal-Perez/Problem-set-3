@@ -1,6 +1,6 @@
 rm(list = ls())
 # Set directory:
-setwd(substr(getwd(), 1, nchar(getwd()) - 8))
+setwd('/Users/juansilva/Desktop/Universidad/Semestre 8/Big Data/Set3')
 # Llamamos las librerías necesarias para la realización del trabajo
 require(pacman)
 require(tidyverse)
@@ -539,6 +539,7 @@ while(i <= nrow(AREA)){
   }
 }
 
-AREA = AREA %>% select(-c('property_id', 'surface_total'))
+AREA = AREA %>% select(c('property_id', 'surface_total'))
+AREA$surface_total = as.numeric(AREA$surface_total)
 write.csv(x = AREA, file = "text_mining_area.csv", row.names = FALSE)
 
