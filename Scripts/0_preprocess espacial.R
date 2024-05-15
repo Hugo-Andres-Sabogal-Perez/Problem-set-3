@@ -390,12 +390,20 @@ test<- test  %>% rename('avaluo_comercialmanz'='AVALUO_COM',
                           'nombre_sector'='SCANOMBRE',
                           'n_delitossexuales'='n_delitossexales')
 
+
+###Wquitamos descripcion y tituulos
+
+train<- train  %>% dplyr::select(-description, -title)
+
+test<- test  %>% dplyr::select(-description, -title)
 #Exportamos ya base limpia
 export(train, 'Stores/outputs/train_geo.rds')
 export(test, 'Stores/outputs/test_geo.rds')
 
 #Prueba exportacion
 pruebatrain<-import('Stores/outputs/train_geo.rds')
+
+
 ##Para observar objetos nuevos
 leaflet() %>%
   addTiles() %>%
