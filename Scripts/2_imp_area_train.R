@@ -4,7 +4,6 @@ setwd(substr(getwd(), 1, nchar(getwd()) - 8))
 rm(list = ls())
 # Set directory:
 
-
 ###Importamos librerias
 require(pacman)
 p_load(rio,
@@ -13,12 +12,11 @@ p_load(rio,
 
 ##Importamos datos
 train_imp<-import('Stores/inputs/train.csv')
-test_imp<-import('Stores/inputs/test.csv')
+
 
 ###Filtramos para solo area
 
-train_imp<- train_imp %>% select(property_id, surface_total, surface_covered, description,title)
-test_imp<- test_imp %>% select(property_id, surface_total, surface_covered, description, title)
+train_imp<- train_imp %>% select(property_id, surface_total, surface_covered, description,title,bathrooms)
 
 ###Creamos la variables surfcae
 
@@ -63,7 +61,7 @@ train_imp<-palabra_anteriorti(palabra = 'm2', train_imp)
 train_imp<-train_imp %>% rename('m2ti'='m2')
 
 
-
+##Creamos mas varaibles que pueden contener la info de area
 train_imp<-palabra_anteriordes(palabra = 'mt2', train_imp)
 train_imp<-palabra_anteriordes('metros', train_imp)
 train_imp<-palabra_anteriordes('m2', train_imp)
@@ -113,7 +111,6 @@ train_imp <- train_imp %>%
 
 ###Ultimas modificaciones (cambiamos de string a numeros)
 train_imp <- train_imp %>%
-            mutate(area_str=gsub("[^0-9]", "", area_str))  %>%
             mutate(area_str=gsub("\\bmil\\b", "1000", area_str, ignore.case = TRUE)) %>%
             mutate(area_str=gsub("\\btrecientos\\b", "300", area_str, ignore.case = TRUE)) %>%
             mutate(area_str=ifelse(grepl("^veinti", area_str), "22", area_str)) %>%
@@ -126,12 +123,49 @@ train_imp <- train_imp %>%
 train_imp <- train_imp %>%
              mutate(area_num=ifelse(is.na(area_num), as.numeric(area_str), area_num))
 
+
+#### tratamos baños
+
+train_imp <- train_imp %>% select(property_id, area_num, bathrooms, description)
+
+
+
+
+##Creamos mas varaibles que pueden contener la info baños
+train_imp<-palabra_anteriordes(palabra = 'banos', train_imp)
+train_imp<-palabra_anteriordes(palabra = 'bano', train_imp)
+
+
+#Pasamos de string a numero (banos)
+train_imp <- train_imp %>% 
+  mutate(banos=gsub("\\bdos\\b", "2", banos, ignore.case = TRUE),
+         banos=gsub("\\btres\\b", "3", banos, ignore.case = TRUE),
+         banos=gsub("\\bcuatro\\b", "4", banos, ignore.case = TRUE),
+         banos=gsub("\\bcinco\\b", "5", banos, ignore.case = TRUE),
+         banos=gsub("\\bseis\\b", "6", banos, ignore.case = TRUE),
+         banos=gsub("\\bun\\b", "1", banos, ignore.case = TRUE) )
+
+#Pasamos de string a numero (bano)
+train_imp <- train_imp %>% 
+  mutate(bano=gsub("\\bdos\\b", "2", bano, ignore.case = TRUE),
+         bano=gsub("\\btres\\b", "3", bano, ignore.case = TRUE),
+         bano=gsub("\\bcuatro\\b", "4", bano, ignore.case = TRUE),
+         bano=gsub("\\bcinco\\b", "5", bano, ignore.case = TRUE),
+         bano=gsub("\\bseis\\b", "6", bano, ignore.case = TRUE),
+         bano=gsub("\\bun\\b", "1", bano, ignore.case = TRUE))
+
+
+## imputamos valores    
+train_imp <- train_imp %>%
+             mutate(n_baños=ifelse(is.na(bathrooms),as.numeric(banos),bathrooms),
+                    n_baños=ifelse(is.na(n_baños),as.numeric(bano),n_baños))
+
+
 ###Dejmos vivo solo area_num
 
-train_imp <- train_imp %>% select(property_id, area_num)
+train_imp <- train_imp %>% select(property_id, area_num, n_baños)
 
-
+#Exportamos datos
 export(train_imp, 'Stores/outputs/train_imp_area.rds')
             
-
 
