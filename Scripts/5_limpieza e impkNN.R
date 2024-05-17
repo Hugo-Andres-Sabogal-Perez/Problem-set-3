@@ -113,23 +113,13 @@ export(test, "Stores/outputs/test_estat_desc.rds")
 train_kimp<-kNN(train)
 test_imp<-kNN(test)
 
-train_kimp<-train_kimp[,1:82]
-test_kimp<-test_imp[,1:81]
 
-
-export(train_kimp, "Stores/outputs/train_kimp.rds")
-export(test_kimp, "Stores/outputs/train_kimp.rds")
-
-
-##### dejar lat y lon en las bases
-
-
-#limpiar en entorno
-rm(list = ls())
-
+###IMportamos las bases originales
 train_kimp<-import('Stores/outputs/train_kimp.rds')
 test_kimp<-import('Stores/outputs/test_kimp.rds')
 
+train_kimp<-train_kimp[,1:82]
+test_kimp<-test_kimp[,1:81]
 
 #### recuperamos ubicaciípn
 
@@ -144,5 +134,5 @@ train_kimp<-left_join(train_kimp,train_ori , by='property_id')
 test_kimp<-left_join(test_kimp,test_ori , by='property_id')
 
 export(train_kimp, "Stores/outputs/train_kimp.rds")
-export(test_kimp, "Stores/outputs/train_kimp.rds")
+export(test_kimp, "Stores/outputs/test_kimp.rds")
 
