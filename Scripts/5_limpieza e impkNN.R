@@ -118,5 +118,31 @@ test_kimp<-test_imp[,1:81]
 
 
 export(train_kimp, "Stores/outputs/train_kimp.rds")
-export(test_imp, "Stores/outputs/test_kimp.rds")
+export(test_kimp, "Stores/outputs/train_kimp.rds")
+
+
+##### dejar lat y lon en las bases
+
+
+#limpiar en entorno
+rm(list = ls())
+
+train_kimp<-import('Stores/outputs/train_kimp.rds')
+test_kimp<-import('Stores/outputs/test_kimp.rds')
+
+
+#### recuperamos ubicaciípn
+
+train_ori<-import('Stores/inputs/train.csv')
+test_ori<-import('Stores/inputs/test.csv')
+
+
+train_ori<-train_ori %>% select(property_id, lat, lon)
+test_ori<-test_ori %>% select(property_id, lat, lon)
+
+train_kimp<-left_join(train_kimp,train_ori , by='property_id')
+test_kimp<-left_join(test_kimp,test_ori , by='property_id')
+
+export(train_kimp, "Stores/outputs/train_kimp.rds")
+export(test_kimp, "Stores/outputs/train_kimp.rds")
 
