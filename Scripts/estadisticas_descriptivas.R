@@ -20,7 +20,7 @@ train_estat_des<- import("train_estat_desc.rds")
 
 #Tabla 1: estadisticas descriptivas 
 
-tabla <- data.frame(train_estat_des$rooms, train_estat_des$bedrooms, train_estat_des$n_baños, train_estat_des$n_parqueaderos, train_estat_des$ESTRATO, train_estat_des$avaluo_catastromanz, train_estat_des$pisos)
+tabla <- data.frame(train_estat_des$rooms, train_estat_des$bedrooms, train_estat_des$n_baños, train_estat_des$n_parqueaderos, train_estat_des$ESTRATO, train_estat_des$avaluo_catastromanz, train_estat_des$pisos,train_estat_des$area_num) 
 vars <- length(colnames(tabla))
 EstDesc <- data.frame(
   "Variable" = colnames(tabla), "Observaciones" = rep(NA, vars), "Media" = rep(NA, vars),
