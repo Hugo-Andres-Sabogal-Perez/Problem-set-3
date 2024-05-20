@@ -1,7 +1,5 @@
 rm(list = ls())
 setwd("/Users/mapaosuna/Desktop/Octavo Semestre/Big Data/Talleres/Taller 3/Problem-set-3/Stores/outputs")
-test_estat_des<-import('test_estat_desc.rds')
-train_estat_des<- import("train_estat_desc.rds")
 
 require(pacman)
 require(tidyverse)
@@ -16,6 +14,9 @@ require(tidytable)
 require(VIM)
 require(leaps)
 require(margins)
+
+test_estat_des<-import('test_estat_desc.rds')
+train_estat_des<- import("train_estat_desc.rds")
 
 #Tabla 1: estadisticas descriptivas 
 
