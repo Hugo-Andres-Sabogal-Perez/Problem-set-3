@@ -19,7 +19,8 @@ p_load(tidyverse, # Manipular dataframes
        spatialsample, # Muestreo espacial para modelos de aprendizaje automático
        ranger,
        rpart,
-       xgboost) 
+       xgboost,
+       nnet) 
 
 ###Improtamos datos y los convertimos a sf
 train<-import('Stores/outputs/train_modelos.rds')
@@ -255,3 +256,36 @@ sub4<- test %>% mutate(ln_pred=predict(param4, test,type='raw'))  %>%
 
 
 export(sub4, 'Stores/submits/xgboosting.csv')
+
+
+##### redes neuronales (de una sola capa)
+
+###Config del modelo
+
+nnet_tune <- 
+  mlp(hidden_units = tune(), epochs = tune()) %>% 
+  set_mode("regression") %>% 
+  set_engine("nnet", trace = 0) #trace 0 previene la verbosidad del entrenamiento
+
+
+##Grilla
+nnet_grid <- expand.grid(
+  hidden_units = seq(1, 60, by = 2),
+  epochs = seq(from= 50, to=500, by = 50)
+)
+
+
+###Flujo de trabajo
+workflow_5<- workflow() %>% 
+  add_recipe(rec_1) %>%
+  add_model(nnet_tune) 
+
+
+###Ejeutamos el dmodelos
+tune_nnet <- tune_grid(
+  workflow_5,         # El flujo de trabajo que contiene: receta y especificación del modelo
+  resamples = block_folds,  # Folds de validación cruzada espacial
+  grid = nnet_grid ,        # Grilla de valores 
+  metrics = metric_set(mae)  # métrica
+)
+
