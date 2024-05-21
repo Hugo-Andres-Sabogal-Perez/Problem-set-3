@@ -13,18 +13,14 @@ p_load(rio,
        tidytable,
        xtable,
        leaflet,
-       osmdata)
-
-
+       osmdata,
+       ggsn)
 
 
 ###Iimportamos datos
 test_estat_des<-import('Stores/outputs/test_estat_desc.rds')
 train_estat_des<- import("Stores/outputs/train_estat_desc.rds")
 
-
-test_estat_des<-import('test_estat_desc.rds')
-train_estat_des<- import("train_estat_desc.rds")
 
 #Tabla 1: estadisticas descriptivas 
 
@@ -131,25 +127,6 @@ dispersion4
 ggsave("Views/dispersion4.pdf", width = 6, height = 4, plot = dispersion4)
 
 
-#### Sacamos vias de bogota de osmdata
-streets<- opq(bbox=getbb('Bogotá Colombia')) %>% 
-          add_osm_feature(key='highway') %>%
-          osmdata_sf()
-
-### Sacamos limite de bogota
-bogota_lim<-opq(bbox=getbb('Bogotá Colombia')) %>% 
-            add_osm_feature(key='boundary', value='administrative') %>% 
-            osmdata()
-            
-
-#Mapas de estaciones de transmilenio y SITP
-transmi <- st_read('Stores/inputs/transmi/estaciones-de-transmilenio.shp')
-transmi <- st_transform(transmi, crs = 4326)
-
-
-#### crear grafico
-
-
 
 #Tabla de otras características
 table(train_estat_des$balcon)
@@ -159,9 +136,73 @@ table(train_estat_des$ascensor)
 table(train_estat_des$patio)
 
 
-#### Mapa de localidades
-localidades
+
+####Mapas
+
+#### Sacamos vias de bogota de osmdata (esta linea es demorada, ya no es necesario ejecutarla)
+streets_primary<- opq(bbox=getbb('Bogotá Colombia')) %>% 
+  add_osm_feature(key='highway', value='primary') %>%
+  osmdata_sf()
+
+streets_primary<-streets_primary$osm_lines
 
 
+streets_trunk<- opq(bbox=getbb('Bogotá Colombia')) %>% 
+  add_osm_feature(key='highway', value='trunk') %>%
+  osmdata_sf()
+
+streets_trunk<-streets_trunk$osm_lines
+
+streets_secondary<- opq(bbox=getbb('Bogotá Colombia')) %>% 
+  add_osm_feature(key='highway', value='secondary') %>%
+  osmdata_sf()
+
+streets_secondary<-streets_secondary$osm_lines
+
+
+
+### Sacamos limite de bogota
+bogota_lim<-st_read('Stores/inputs/loca/Loca.shp')
+bogota_lim <- st_transform(bogota_lim, crs = 4326)
+
+
+#Mapas de estaciones de transmilenio y SITP
+transmi <- st_read('Stores/inputs/transmi/estaciones-de-transmilenio.shp')
+transmi <- st_transform(transmi, crs = 4326)
+sitp<-st_read("Stores/inputs/psitp/PSITP.shp")
+sitp<-st_transform(sitp, crs = 4326)
+
+
+
+##Mapa con ggplot (mapa 1 transmi)
+map1 <- ggplot() +
+  geom_sf(data=bogota_lim, fill=NA, size=0.8,color='orange')+
+  geom_sf(data = streets_primary, fill = NA, size = 0.6, col='gray') +
+  geom_sf(data = streets_trunk, fill = NA, size = 0.6, col='gray') +
+  geom_sf(data = streets_secondary, fill = NA, size = 0.6, col='gray')+
+  geom_sf(data = transmi, fill = NA, size = 0.8, col='red')+
+  coord_sf(xlim=c(-74.2,-74.03), ylim=c(4.57, 4.8)) +
+  theme_bw()
+
+map1
+
+ggsave("Views/mapatransmi.pdf", width = 6, height = 4, plot = map1)
+
+
+##Mapa con ggplot (mapa 2 sitp)
+
+
+map2 <- ggplot() +
+  geom_sf(data=bogota_lim, fill=NA, size=0.8,color='orange')+
+  geom_sf(data = streets_primary, fill = NA, size = 0.6, col='gray45') +
+  geom_sf(data = streets_trunk, fill = NA, size = 0.6, col='gray45') +
+  geom_sf(data = streets_secondary, fill = NA, size = 0.6, col='gray45')+
+  geom_sf(data = sitp, fill = NA, size = 0.8, col='blue', alpha=0.1)+
+  coord_sf(xlim=c(-74.22,-74.02), ylim=c(4.5, 4.85)) +
+  theme_bw()
+
+map2
+
+ggsave("Views/mapasitp.pdf", width = 6, height = 4, plot = map2)
 
 
