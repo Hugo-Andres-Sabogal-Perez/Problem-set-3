@@ -183,3 +183,5 @@ sub <- GBM_test %>% mutate(price=pred_ln)  %>%
   select(property_id, price)
 
 export(sub, 'ensamble_xgb_lightgbm_EN.csv')
+export(GBM, 'ensamble_train.csv')
+export(GBM_test, 'ensamble_test.csv')
