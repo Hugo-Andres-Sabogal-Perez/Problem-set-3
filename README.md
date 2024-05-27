@@ -13,7 +13,6 @@ Nuestro Repositorio contiene la siguientes carpetas:
 - *Views*: contiene todas los archivos de tablas y gráficos que fueron utilizados dentro del documento final.
 - *Documents*: contiene el documento final del taller, luego de haberlo realizado en LaTeX.
 
-*
 
 ## Replicación del trabajo.
 Este codigo consis de varios scripts, debido a que se dividio el trabajo en subproblemas que se trataron en diferentes documentos. Para replicar el trabajo se recomienda ejecuar el script `Main.R` el cual ejecuta todos los scripts en un orden determinado. A continuación se describira brevemente el contenido de los scripts.
