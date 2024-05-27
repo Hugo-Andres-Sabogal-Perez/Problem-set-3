@@ -4,17 +4,7 @@ setwd(substr(getwd(), 1, nchar(getwd()) - 8))
 
 # Llamamos las librerías necesarias para la realización del trabajo
 require(pacman)
-require(tidyverse)
-require(rio)
-require(caret)
-require(gridExtra)
-require(skimr)
-require(tidytable)
-require(VIM)
-require(leaps)
-require(koRpus)
-require(hunspell)
-require(textstem)
+p_load(tidyverse, rio, caret, gridExtra, skimr, tidytable, VIM, leaps, koRpus, hunspell, textstem)
 
 # Importamos bases de datos
 train <- import('Stores/inputs/test.csv')

@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Punataje MAE de Kagle para diferentes modelos}
+\begin{tabular}{ll}
+\toprule
+\textbf{Modelos} & \textbf{MAE de Kaggle} \\
+\midrule
+Regresión Lineal & 244.098.878,00 \\
+Árbol de regresión & 229.238.184,00 \\
+Random forest (mtry=42, min\_n=3) & 209.844.614,00 \\
+Xgboosting (trees=500,min\_n=30,tree\_depth=6)& 185.475.938,00 \\
+Redes neuronales  & 218.074.723,00 \\
+Light gradient boosting (trees=600,min\_n=25,tree\_depth=4) & 184.662.023,00 \\
+\textbf{Ensamble elastic net} \& \textbf{Light gradient boosting} & \textbf{183.535.559,00} \\
+\bottomrule
+\end{tabular} \\
+\label{tab:mae_kaggle}
+\footnotesize Fuente: Elaboración propia con train.csv, 2024.
+\end{table}
+
